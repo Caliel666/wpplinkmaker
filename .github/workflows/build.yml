@@ -15,7 +15,7 @@ jobs:
           cache: 'pip'
       - name: Install Dependencies
         run: |
-          apt install libgirepository1.0-dev
+          sudo apt install libgirepository1.0-dev
           pip install -r requirements.txt
       - name: Build
         run: |
