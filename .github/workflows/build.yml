@@ -10,7 +10,7 @@ jobs:
       - name: Initial Setup
         uses: actions/checkout@v3
       - name: Python Setup
-        run: pacman -Sy python pip
+        run: pacman -Sy python python-pip
       - name: Install Dependencies
         run: |
           pacman -Sy libgirepository gtk3
