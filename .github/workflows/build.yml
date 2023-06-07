@@ -18,11 +18,11 @@ jobs:
           sudo apt install libgirepository1.0-dev
           pip install -r requirements.txt
       - name: Build
-        run: |
-              ls
-              pyinstaller wpplinkmaker.py --onefile
+        run: pyinstaller wpplinkmaker.py --onefile
+      - name: doko
+        run: ls
       - name: Upload Artifact
         uses: actions/upload-artifact@master
         with:
           name: wpplinkmaker
-          path: wpplinkmaker/dist/*
+          path: dist/*
