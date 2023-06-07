@@ -4,6 +4,7 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: archlinux:latest
 
     steps:
       - name: Initial Setup
@@ -15,7 +16,7 @@ jobs:
           cache: 'pip'
       - name: Install Dependencies
         run: |
-          sudo apt install libgirepository1.0-dev libgtk-3-0
+          sudo pacman -S libgirepository gtk3
           pip install -r requirements.txt
       - name: Build
         run: pyinstaller wpplinkmaker.py --onefile
