@@ -1,0 +1,5 @@
+altgraph==0.17.3
+pycairo==1.23.0
+PyGObject==3.44.1
+pyinstaller==5.11.0
+pyinstaller-hooks-contrib==2023.3
