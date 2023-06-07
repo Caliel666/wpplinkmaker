@@ -13,7 +13,7 @@ jobs:
         run: pacman -S python pip
       - name: Install Dependencies
         run: |
-          pacman -S libgirepository gtk3
+          pacman -Sy libgirepository gtk3
           pip install -r requirements.txt
       - name: Build
         run: pyinstaller wpplinkmaker.py --onefile
