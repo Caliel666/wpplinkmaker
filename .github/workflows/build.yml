@@ -4,16 +4,18 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: archlinux:latest
 
     steps:
       - name: Initial Setup
         uses: actions/checkout@v3
       - name: Python Setup
-        run: pacman -Sy python python-pip --noconfirm
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
       - name: Install Dependencies
         run: |
-          pacman -Sy libgirepository gtk3 --noconfirm
+          sudo apt install libgirepository1.0-dev
           pip install -r requirements.txt
       - name: Build
         run: pyinstaller wpplinkmaker.py --onefile
