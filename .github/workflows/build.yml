@@ -10,10 +10,10 @@ jobs:
       - name: Initial Setup
         uses: actions/checkout@v3
       - name: Python Setup
-        run: pacman -Sy python python-pip
+        run: pacman -Sy python python-pip --noconfirm
       - name: Install Dependencies
         run: |
-          pacman -Sy libgirepository gtk3
+          pacman -Sy libgirepository gtk3 --noconfirm
           pip install -r requirements.txt
       - name: Build
         run: pyinstaller wpplinkmaker.py --onefile
