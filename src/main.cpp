@@ -14,23 +14,19 @@ public:
     add(*vbox);
 
     text_label1.set_text("Numero de telefone aqui, EX: 5521999999999");
-    text_label1.set_halign(Gtk::ALIGN_START);
     vbox->pack_start(text_label1, Gtk::PACK_SHRINK, 0);
 
     text_entry1.set_placeholder_text("Numero de celular");
-    text_entry1.set_hexpand(true);
     vbox->pack_start(text_entry1, Gtk::PACK_SHRINK, 0);
 
     text_label2.set_text("Mensagem aqui, EX: Oi, tudo bem?");
-    text_label2.set_halign(Gtk::ALIGN_START);
     vbox->pack_start(text_label2, Gtk::PACK_SHRINK, 0);
 
     text_entry2.set_placeholder_text("Mensagem");
-    text_entry2.set_hexpand(true);
     vbox->pack_start(text_entry2, Gtk::PACK_SHRINK, 0);
 
     Gtk::Button* button = Gtk::manage(new Gtk::Button("Criar Link"));
-    button->set_halign(Gtk::ALIGN_CENTER);
+    button->signal_clicked().connect(sigc::mem_fun(*this, &MyWindow::on_button_clicked));
     vbox->pack_start(*button, Gtk::PACK_SHRINK, 0);
 
     show_all_children();
@@ -64,6 +60,10 @@ private:
 
   bool on_delete_event(GdkEventAny*)
   {
+    // Handle the delete event here
+    // ...
+
+    // Return true to stop further processing or false to allow default handling
     return false;
   }
 };
@@ -76,4 +76,3 @@ int main(int argc, char* argv[]) {
 
   return 0;
 }
-
