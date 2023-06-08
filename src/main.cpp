@@ -5,27 +5,32 @@
 
 class MyWindow : public Gtk::Window {
 public:
-  MyWindow() : Gtk::Window(), text_entry1(), text_entry2() {
+  MyWindow() : Gtk::Window(), vbox(), text_label1(), text_entry1(), text_label2(), text_entry2() {
     set_title("Whatsapp Link Maker");
     set_default_size(400, 200);
     set_border_width(10);
 
-    Gtk::VBox* vbox = Gtk::manage(new Gtk::VBox());
+    vbox = Gtk::manage(new Gtk::VBox());
     add(*vbox);
 
-    // Create an image widget with a URL
-    Gtk::Image* image = Gtk::manage(new Gtk::Image());
-    image->set_from_file("https://example.com/path/to/your/image.jpg");
-    vbox->pack_start(*image, Gtk::PACK_SHRINK, 0);
+    text_label1.set_text("Numero de telefone aqui, EX: 5521999999999");
+    text_label1.set_halign(Gtk::ALIGN_START);
+    vbox->pack_start(text_label1, Gtk::PACK_SHRINK, 0);
 
-    text_entry1.set_text("Numero de telefone aqui, EX: 5521999999999");
+    text_entry1.set_placeholder_text("Numero de celular");
+    text_entry1.set_hexpand(true);
     vbox->pack_start(text_entry1, Gtk::PACK_SHRINK, 0);
 
-    text_entry2.set_text("Mensagem aqui, EX: Oi, tudo bem?");
+    text_label2.set_text("Mensagem aqui, EX: Oi, tudo bem?");
+    text_label2.set_halign(Gtk::ALIGN_START);
+    vbox->pack_start(text_label2, Gtk::PACK_SHRINK, 0);
+
+    text_entry2.set_placeholder_text("Mensagem");
+    text_entry2.set_hexpand(true);
     vbox->pack_start(text_entry2, Gtk::PACK_SHRINK, 0);
 
     Gtk::Button* button = Gtk::manage(new Gtk::Button("Criar Link"));
-    button->signal_clicked().connect(sigc::mem_fun(*this, &MyWindow::on_button_clicked));
+    button->set_halign(Gtk::ALIGN_CENTER);
     vbox->pack_start(*button, Gtk::PACK_SHRINK, 0);
 
     show_all_children();
@@ -34,7 +39,10 @@ public:
   }
 
 private:
+  Gtk::VBox* vbox;
+  Gtk::Label text_label1;
   Gtk::Entry text_entry1;
+  Gtk::Label text_label2;
   Gtk::Entry text_entry2;
 
   void on_button_clicked() {
@@ -56,10 +64,6 @@ private:
 
   bool on_delete_event(GdkEventAny*)
   {
-    // Handle the delete event here
-    // ...
-
-    // Return true to stop further processing or false to allow default handling
     return false;
   }
 };
