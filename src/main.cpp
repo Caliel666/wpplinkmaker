@@ -47,15 +47,18 @@ private:
 
     std::string text2 = text_entry2.get_text();
 
-    std::string base_link = "http://wa.me/";
-    std::string base_msg = "?text=";
+    std::string base_link = "https://web.whatsapp.com/send/?phone=";
+    std::string base_msg = "&text=";
+    std::string base_type = "&type=phone_number&app_absent=0";
 
     std::string encoded_text2 = Glib::uri_escape_string(text2);
 
-    std::string result_link = base_link + text1 + base_msg + encoded_text2;
+    std::string result_link = base_link + text1 + base_msg + encoded_text2 + base_type;
 
-    std::string command = "xdg-open " + result_link;
+   
+    std::string command = "xdg-open \"" + result_link + "\"";
     std::system(command.c_str());
+
   }
 
   bool on_delete_event(GdkEventAny*)
@@ -76,3 +79,4 @@ int main(int argc, char* argv[]) {
 
   return 0;
 }
+
