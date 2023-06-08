@@ -53,12 +53,14 @@ private:
 
     std::string encoded_text2 = Glib::uri_escape_string(text2);
 
-    std::string result_link = base_link + text1 + base_msg + encoded_text2 + base_type;
+    std::string result_link = base_link + text1;
+    if (!encoded_text2.empty()) {
+      result_link += base_msg + encoded_text2;
+    }
+    result_link += base_type;
 
-   
     std::string command = "xdg-open \"" + result_link + "\"";
     std::system(command.c_str());
-
   }
 
   bool on_delete_event(GdkEventAny*)
